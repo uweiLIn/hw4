@@ -39,8 +39,8 @@ int main() {
             if(value == '.'){
                 store = 0;
                 if(i == 1) angle = output[0];                   // one digit
-                else if(i == 2) angle = 10*output[0] + output[1]; // two digits
-                else if(i == 3) angle = 100*output[0] + 10*output[1] + output[2]; // three digits
+                if(i == 2) angle = 10*output[0] + output[1]; // two digits
+                if(i == 3) angle = 100*output[0] + 10*output[1] + output[2]; // three digits
                 i = 0;
                 for (int j = 0; j < 3; j++) {
                     output[j] = 0;
