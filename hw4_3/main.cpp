@@ -13,7 +13,6 @@ BufferedSerial uart(D1,D0); //tx,rx
 BBCar car(pin5, pin6, servo_ticker);
 
 char value;
-int i= 0;
 int angle;
 
 int output[3] = {0};
@@ -23,6 +22,7 @@ float dis = 0;
 
 
 int main() {
+    int i = 0;
 
     pc.set_baud(9600);
     uart.set_baud(9600);
@@ -38,9 +38,9 @@ int main() {
                     }
             if(value == '.'){
                 store = 0;
-                if(i == 1) angle = output[0];                   // one digit
-                if(i == 2) angle = 10*output[0] + output[1]; // two digits
-                if(i == 3) angle = 100*output[0] + 10*output[1] + output[2]; // three digits
+                if(i == 1) angle = output[0];                                   // one digit
+                if(i == 2) angle = 10*output[0] + output[1];                    // two digits
+                if(i == 3) angle = 100*output[0] + 10*output[1] + output[2];    // three digits
                 i = 0;
                 for (int j = 0; j < 3; j++) {
                     output[j] = 0;
@@ -65,7 +65,7 @@ int main() {
             t.start();
             while(ping.read() == 1);
             dis = t.read();
-            printf("Ping = %lf\r\n", dis*17700.4f);
+            printf("Distance is %fcm\r\n", dis*17700.4f);
             t.stop();
             t.reset();
       }
