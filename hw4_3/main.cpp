@@ -6,11 +6,12 @@ Ticker servo_ticker;
 Ticker encoder_ticker;
 Timer t;
 PwmOut pin5(D5), pin6(D6);
-DigitalInOut ping(D10);
+DigitalInOut ping(D11);
 
 BufferedSerial pc(USBTX,USBRX); //tx,rx
 BufferedSerial uart(D1,D0); //tx,rx
 BBCar car(pin5, pin6, servo_ticker);
+BufferedSerial xbee(D10, D9);
 
 char value;
 int angle;
@@ -65,7 +66,7 @@ int main() {
             t.start();
             while(ping.read() == 1);
             dis = t.read();
-            printf("Distance is %fcm\r\n", dis*17700.4f);
+            xbee.write(dis*17700.4f, sizeof(dis));           
             t.stop();
             t.reset();
       }
