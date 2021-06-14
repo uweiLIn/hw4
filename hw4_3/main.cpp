@@ -20,7 +20,7 @@ int output[3] = {0};
 int store = 1;
 
 float dis = 0;
-
+float dis_xbee = 0;
 
 int main() {
     int i = 0;
@@ -66,7 +66,8 @@ int main() {
             t.start();
             while(ping.read() == 1);
             dis = t.read();
-            xbee.write(dis*17700.4f, sizeof(dis));           
+            dis_xbee = dis * 177700.4f;
+            xbee.write(dis_xbee, sizeof(dis_xbee));           
             t.stop();
             t.reset();
       }
