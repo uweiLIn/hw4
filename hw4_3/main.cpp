@@ -22,6 +22,8 @@ int store = 1;
 float dis = 0;
 float dis_xbee = 0;
 
+char buffer[10];
+
 int main() {
     int i = 0;
 
@@ -67,7 +69,8 @@ int main() {
             while(ping.read() == 1);
             dis = t.read();
             dis_xbee = dis * 177700.4f;
-            xbee.write(dis_xbee, sizeof(dis_xbee));           
+            sprintf(buffer, "%f", dis_xbee);
+            xbee.write(buffer, sizeof(buffer));           
             t.stop();
             t.reset();
       }
